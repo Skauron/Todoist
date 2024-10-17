@@ -9,6 +9,7 @@ export const IndividualProject = ({ project }) => {
   const { setSelectedProject } = useSelectedProjectValue();
 
   const deleteProject = (docId) => {
+    console.log("Eliminando proyecto"); //!FIX ELIMINAR PROYECTO MAÑANA QUOTA EXCEEDED
     firebase
       .firestore()
       .collection("projects")
@@ -29,17 +30,20 @@ export const IndividualProject = ({ project }) => {
         data-testid="delete-project"
         onClick={() => setShowConfirm(!showConfirm)}
       >
-        <FaTrashAlt/>
+        <FaTrashAlt />
         {showConfirm && (
-            <div className="project-delete-modal">
-                <div className="project-delete-modal__inner">
-                    <p>Are you sure you want to delete this project?</p>
-                    <button type="button" onClick={() => deleteProject(project.docId)}>
-                        Delete
-                    </button>
-                    <span onClick={() => setShowConfirm(!showConfirm)}>Cancel</span>
-                </div>
+          <div className="project-delete-modal">
+            <div className="project-delete-modal__inner">
+              <p>Are you sure you want to delete this project?</p>
+              <button
+                type="button"
+                onClick={() => deleteProject(project.docId)}
+              >
+                Delete
+              </button>
+              <span onClick={() => setShowConfirm(!showConfirm)}>Cancel</span>
             </div>
+          </div>
         )}
       </span>
     </>
