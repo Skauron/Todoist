@@ -9,7 +9,7 @@ export const IndividualProject = ({ project }) => {
   const { setSelectedProject } = useSelectedProjectValue();
 
   const deleteProject = (docId) => {
-    console.log("Eliminando proyecto"); //!FIX ELIMINAR PROYECTO MAÑANA QUOTA EXCEEDED
+    console.log("Eliminando proyecto"); //!FIX ELIMINAR PROYECTO A VECES FALLA
     firebase
       .firestore()
       .collection("projects")
