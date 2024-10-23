@@ -24,6 +24,7 @@ export const Projects = ({ activeValue = true }) => {
       >
         <div
           role="button"
+          aria-label={`Select ${project.name} as the task project`}
           tabIndex={0}
           onClick={() => {
             setActive(project.projectId);
@@ -31,7 +32,7 @@ export const Projects = ({ activeValue = true }) => {
           }}
           onKeyDown={() => {
             setActive(project.projectId);
-            setSelectedPorject(project.projectId);
+            setSelectedProject(project.projectId);
           }}
         >
           <IndividualProject project={project} />
