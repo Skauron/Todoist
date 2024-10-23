@@ -1,4 +1,4 @@
-import React, { useState,  useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Checkbox } from "./Checkbox";
 import { AddTask } from "./AddTask";
 import { useTasks } from "../hooks";
@@ -11,18 +11,19 @@ export const Tasks = () => {
   const { projects } = useProjectsValue();
   const { tasks } = useTasks(selectedProject);
 
-  //console.log(tasks);
-
   let projectName = "";
-
-  if (projects && selectedProject && !collatedTasksExist(selectedProject)) {
-    projectName = getTitle(projects, selectedProject).name;
-    //console.log("projectName 1: ", projectName);
-  }
 
   if (collatedTasksExist(selectedProject) && selectedProject) {
     projectName = getCollatedTitle(collatedTasks, selectedProject).name;
-    //console.log("projectName 2: ", projectName);
+  }
+  
+  if (
+    projects &&
+    projects.length > 0 &&
+    selectedProject &&
+    !collatedTasksExist(selectedProject)
+  ) {
+    projectName = getTitle(projects, selectedProject).name; //! ERROR WHEN DELETING A PROJECT
   }
 
   useEffect(() => {
@@ -35,12 +36,12 @@ export const Tasks = () => {
       <ul className="tasks__list">
         {tasks.map((task) => (
           <li key={`${task.id}`}>
-            <Checkbox id={tasks.id} />
+            <Checkbox id={task.id} />
             <span>{task.task}</span>
           </li>
         ))}
       </ul>
-      <AddTask /> 
+      <AddTask />
     </div>
   );
 };
