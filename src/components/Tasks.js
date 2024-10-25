@@ -16,14 +16,15 @@ export const Tasks = () => {
   if (collatedTasksExist(selectedProject) && selectedProject) {
     projectName = getCollatedTitle(collatedTasks, selectedProject).name;
   }
-  
+
   if (
     projects &&
     projects.length > 0 &&
     selectedProject &&
     !collatedTasksExist(selectedProject)
   ) {
-    projectName = getTitle(projects, selectedProject).name; //! ERROR WHEN DELETING A PROJECT
+    const title = getTitle(projects, selectedProject);
+    projectName = title ? title.name : "UNDEFINED";
   }
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export const Tasks = () => {
       <ul className="tasks__list">
         {tasks.map((task) => (
           <li key={`${task.id}`}>
-            <Checkbox id={task.id} />
+            <Checkbox id={task.id} taskDesc={task.task} />
             <span>{task.task}</span>
           </li>
         ))}

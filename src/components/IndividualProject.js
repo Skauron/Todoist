@@ -9,15 +9,14 @@ export const IndividualProject = ({ project }) => {
   const { setSelectedProject } = useSelectedProjectValue();
 
   const deleteProject = (docId) => {
-    console.log("Eliminando proyecto"); //!FIX ELIMINAR PROYECTO A VECES FALLA
     firebase
       .firestore()
       .collection("projects")
       .doc(docId)
       .delete()
       .then(() => {
-        setProjects([...projects]);
         setSelectedProject("INBOX");
+        setProjects([...projects]);
       });
   };
 
